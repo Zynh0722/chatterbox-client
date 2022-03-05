@@ -8,14 +8,32 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    // must render
+    MessagesView.render();
   },
 
-  render: function() {
+  render: function(room = null) {
     // TODO: Render _all_ the messages.
+    // iterate over Message._data array calling renderMessage each time.
+    MessagesView.$chats.html('');
+
+    if (Messages._data) {
+      for (let i = 0; i < Messages._data.length; i++) {
+        if (Messages._data[i].username
+            && Messages._data[i].text
+            && (room === null ||
+            Messages._data[i].roomname === room ||
+            room === 'all')) {
+          // console.log(Messages._data[i]);
+          MessagesView.renderMessage(Messages._data[i]);
+        }
+      }
+    }
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
+    MessagesView.$chats.append($(MessageView.render(message)));
   },
 
   handleClick: function(event) {

@@ -15,10 +15,13 @@ var FormView = {
     event.preventDefault();
 
     // TODO: update message list when message is sent
-
     let message = FormView.$form.children('#message').val(); //get and store the data in the form
 
-    Parse.create(message, (data) => { console.log('it worked! ' + JSON.stringify(data)); }); //send the data to Parse.create with data as the message argument.
+    if (message) {
+      Parse.create(message, (data) => { console.log('it worked! ' + JSON.stringify(data)); }); //send the data to Parse.create with data as the message argument.
+    }
+
+    FormView.$form.children('#message').val('');
   },
 
   setStatus: function(active) {

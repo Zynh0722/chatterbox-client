@@ -12,6 +12,16 @@ var Messages = {
 
   assign: function(data) {
     Messages._data = data;
+
+    for (let i = 0; i < Messages._data.length; i++) {
+      if (Messages._data[i].username
+        && Messages._data[i].text) {
+        Messages._data[i].username = Messages._data[i].username.replace(/</, '&#60');
+        Messages._data[i].text = Messages._data[i].text.replace(/</, '&#60');
+      }
+    }
+
+    // console.log('finished!');
   }
 
 };

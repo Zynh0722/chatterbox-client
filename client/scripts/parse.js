@@ -12,7 +12,7 @@ var Parse = {
     let newMessage = {
       username: App.username,
       text: message,
-      roomname: 'general'
+      roomname: RoomsView.getRoom()
     };
 
     $.ajax({
@@ -20,7 +20,7 @@ var Parse = {
       type: 'POST',
       data: JSON.stringify(newMessage),
       contentType: 'application/json',
-      success: successCB, // invoked with a single message object as its argument
+      success: successCB, // invoked with the inputted message object as its argument
       error: errorCB || function(error) {
         console.error('chatterbox: Failed to post message', error);
       }

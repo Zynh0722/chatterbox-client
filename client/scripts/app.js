@@ -15,25 +15,35 @@ var App = {
     RoomsView.initialize();
     MessagesView.initialize();
 
-    // Fetch initial batch of messages
-    App.startSpinner();
-    App.fetch(App.stopSpinner);
+    App.update();
+
+    setInterval(App.update, 10 * 1000);
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+  },
+
+  update: function () {
+    App.startSpinner();
+    App.fetch(function() {
+      App.stopSpinner();
+      MessagesView.render();
+      RoomsView.render(RoomsView.getRoom());
+    });
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
-      console.log(data);
+      // console.log(data);
       Messages.assign(data);
 
       // send data to rooms;
-    });
+      Rooms.assign(data);
 
-    callback();
+      callback();
+    });
   },
 
   startSpinner: function() {
