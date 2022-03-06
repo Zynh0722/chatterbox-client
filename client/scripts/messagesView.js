@@ -33,7 +33,11 @@ var MessagesView = {
 
   renderMessage: function(message) {
     // TODO: Render a single message.
-    MessagesView.$chats.append($(MessageView.render(message)));
+    let $message = $(MessageView.render(message));
+    if (Friends._data[message['username']]) {
+      $message.addClass('friend');
+    }
+    MessagesView.$chats.append($message);
   },
 
   handleClick: function(event) {

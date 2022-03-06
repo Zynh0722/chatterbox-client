@@ -19,6 +19,12 @@ var App = {
 
     setInterval(App.update, 10 * 1000);
 
+    //set event listener for clicking on a username
+    $('body').on('click', '.username', function() {
+      Friends.toggle($(this).text());
+      App.update();
+    });
+
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
   },
@@ -56,3 +62,9 @@ var App = {
     FormView.setStatus(false);
   }
 };
+
+
+//set an event listener on the body for click on class '.chat'
+//set an event handler that adds the element's username to friend storage
+//on render, add class 'friend' to the messages
+//css styling kinda stuff using .friend selector

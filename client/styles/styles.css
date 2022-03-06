@@ -69,6 +69,10 @@ form input[type=text] {
     font-weight: 800;
 }
 
+.username {
+    cursor: pointer;
+}
+
 .chat:hover {
     background-color: #ddd;
 }
@@ -90,4 +94,9 @@ form input[type=text] {
 
 .selector {
     width: 105px;
+}
+
+.friend:hover {
+    background-color: #0090da;
+    filter: brightness(80%);;
 }
